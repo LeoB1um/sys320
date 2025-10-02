@@ -1,4 +1,4 @@
-﻿cd C:\Users\champuser\Desktop
+﻿cd $PSScriptRoot #C:\Users\champuser\Desktop
 
 $files=(Get-ChildItem)
 for ($j=0; $j -le $files.Length ; $j++){

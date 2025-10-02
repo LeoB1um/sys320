@@ -32,7 +32,7 @@ $loginoutsTable += [PSCustomObject]@{
 return $loginoutsTable
 }
 
-#echo "Please enter number of days you would like to see logs for:" 
-#$dayspos = Read-Host
+echo "Please enter number of days you would like to see logs for:" 
+$dayspos = Read-Host
 
-#loginLogsVarDays($dayspos)
+loginLogsVarDays($dayspos)
