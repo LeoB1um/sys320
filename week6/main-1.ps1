@@ -200,7 +200,7 @@ while($operation){
               }
         if($name -eq "exit"){continue}
                         
-    }
+    } # close 6
 
     # Gets Log-in logs
     elseif($choice -eq 7){
@@ -259,13 +259,14 @@ while($operation){
         #> #Done
 
         Write-Host ($userLogins | Where-Object { $_.User -ilike "*$name"} | Format-Table | Out-String)
-    }
+    } # close 8
 
-
+    <#
     # TODO: Create another choice "List at Risk Users" that
     #              - Lists all the users with more than 10 failed logins in the last <User Given> days.  
     #                (You might need to create some failed logins to test)
-    #              - Do not forget to update prompt and option numbers
+    #              - Do not forget to update prompt and option 
+    #> # Done 
     elseif($choice -eq 9){
     clear
 
@@ -299,7 +300,8 @@ while($operation){
     
         }#end of forloop
 }    
-    }
+    } # close 9
+    
     <#
     # TODO: If user enters anything other than listed choices, e.g. a number that is not in the menu   
     #       or a character that should not be accepted. Give a proper message to the user and prompt again.
