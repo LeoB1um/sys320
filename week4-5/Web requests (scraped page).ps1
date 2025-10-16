@@ -4,7 +4,7 @@
 $scrapedPage.Count
 
 #Displays links as HTML elements
-$scrapedPage.Links
+$scrapedPage.Links | Select-Object outerText, href
 
 #gets outer text of every element with the tag 'h2'
 $h2s = $scrapedPage.ParsedHtml.getElementsByTagName("h2") | Select outertext

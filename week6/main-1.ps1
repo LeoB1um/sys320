@@ -270,36 +270,17 @@ while($operation){
     elseif($choice -eq 9){
     clear
 
-        $badLogins = Get-LocalUser | Select-Object -ExpandProperty Name
-        
-        
+    While($true) {
         $days = Read-Host "Please Enter the amount of days in the past you would like to see logs for"
-        
-
-        $failedLogins = getFailedLogins($days) 
-  
-
-        $badLoginTotal = @()
-
-        foreach ($user in $badLogins) {
-            $matchCount = ($failedLogins | Where-Object { $_.User -like "*\$user" }).Count
-            
-            
-            if($matchCount -gt 9){
-                $badLoginTotal += [PSCustomObject]@{
-                                                   "Account" = "$user";
-                                                   "Password Fails over the past $days days" = "$matchCount"
-                                                   }           
-            
-                                         }
-            else { continue }
-        
-        if ($badLoginTotal.Count -gt 0) { $badLoginTotal | Format-Table -AutoSize }
-        else { Write-Host "No accounts with more than 9 failed login attempts found." 
-
+        if($days -match "^\d+$") { break }
+        elseif ($days -match '^-\d+$') { Write-Host "Negative numbers are not accepted."
+                                         Continue }            
+        else { Write-Host "Not A Number"
+               Continue }
+               }
     
-        }#end of forloop
-}    
+    atRiskUsers($days)
+
     } # close 9
     
     <#

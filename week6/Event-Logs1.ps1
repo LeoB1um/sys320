@@ -66,3 +66,32 @@ function getFailedLogins($timeBack){
 
     return $failedloginsTable
 } # End of function getFailedLogins
+
+
+# Gets a list of users who have failed password attempts over the last 'x' days
+Function atRiskUsers($days) {
+
+        $badLogins = Get-LocalUser | Select-Object -ExpandProperty Name                   
+
+        $failedLogins = getFailedLogins($days) 
+  
+
+        $badLoginTotal = @()
+
+        foreach ($user in $badLogins) {
+            $matchCount = ($failedLogins | Where-Object { $_.User -like "*\$user" }).Count
+            
+            
+            if($matchCount -gt 9){
+                $badLoginTotal += [PSCustomObject]@{
+                                                   "Account" = "$user";
+                                                   "Password Fails over the past $days days" = "$matchCount"
+                                                   }           
+            
+                                         }
+            else { continue }
+        
+        if ($badLoginTotal.Count -gt 0) { $badLoginTotal | Format-Table -AutoSize }
+        else { Write-Host "No accounts with more than 9 failed login attempts found."}
+    }
+}

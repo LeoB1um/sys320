@@ -9,6 +9,5 @@ $logins
 
 
 #checks for shutdowns and startups in the last 25 days
-$ShutdownLogs = onOffLogs
-(25)
+$ShutdownLogs = onOffLogs(25)
 $ShutdownLogs

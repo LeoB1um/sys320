@@ -1,0 +1,44 @@
+﻿function ChooseTimeToRun ($Time) {
+
+    $scheduledTasks = Get-ScheduledTask | where-Object { $_. TaskName -ilike "myTask" }
+
+    if ($scheduledTasks -ne $null) {
+        Write-Host "The task already exists." | Out-String
+        DisableAutoRun
+    }
+
+    Write-Host "Creating new task." | Out-String
+    <#
+    # The following code is solely so I can get the event to happen today instead of tomorrow.
+    # Get today's date 
+    $today = (Get-Date).Date
+
+    # Parse the time string into a TimeSpan
+    $timeSpan = [datetime]::ParseExact($Time, 'h:mm tt', $null).TimeOfDay
+
+    # Combine today's date and the time
+    $timeToday = $today + $timeSpan
+    $timeToday
+    #>
+
+    $action = New-ScheduledTaskAction -Execute "powershell.exe" -argument "-File `"c:\Users\champuser\SYS320-01\week7\main.ps1`""
+       
+    
+    $trigger = New-ScheduledTaskTrigger -Daily -At $Time
+    $principal = New-ScheduledTaskPrincipal -UserId 'champuser' -RunLevel Highest
+    $settings = New-ScheduledTaskSettingsSet -RunOnlyIfNetworkAvailable -WakeToRun
+    $task = New-ScheduledTask -Action $action -Principal $principal -Trigger $trigger -Settings $settings
+
+    Register-ScheduledTask 'myTask' -InputObject $task
+    
+    Get-ScheduledTask | Where-Object { $_.TaskName -ilike "myTask" }
+}
+
+function DisableAutoRun () {
+    $scheduledTasks = Get-ScheduledTask | Where-Object { $_. TaskName -ilike "myTask" }
+    if ($scheduledTasks -ne $null) {
+        Write-Host "Unregistering the task." | Out-String
+        Unregister-ScheduledTask -TaskName 'myTask' -Confirm: $false
+    }
+    else { Write-Host "The task is not registered." | Out-String }
+}

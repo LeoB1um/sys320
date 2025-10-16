@@ -17,13 +17,13 @@ $regex = [regex] "[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}"
 # Gets $notofunds records that match to the regex
 $ipsUnorganiszed = $regex.Matches($notfounds -join "`n")
 
-#$ipsUnorganiszed
+$ipsUnorganiszed
 
 #Gets ips as pscustomobject 
 $ips = @()
 for($i=0; $i -lt $ipsUnorganiszed.Count; $i++){
-   $ips += [pscustomobject]@{ "IP" = $ipsUnorganiszed[$i].Value; }
- }
+  $ips += [pscustomobject]@{ "IP" = $ipsUnorganiszed[$i].Value; }
+}
 
 # Counts ips from number 8
 
