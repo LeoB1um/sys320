@@ -8,20 +8,8 @@
     }
 
     Write-Host "Creating new task." | Out-String
-    <#
-    # The following code is solely so I can get the event to happen today instead of tomorrow.
-    # Get today's date 
-    $today = (Get-Date).Date
 
-    # Parse the time string into a TimeSpan
-    $timeSpan = [datetime]::ParseExact($Time, 'h:mm tt', $null).TimeOfDay
-
-    # Combine today's date and the time
-    $timeToday = $today + $timeSpan
-    $timeToday
-    #>
-
-    $action = New-ScheduledTaskAction -Execute "powershell.exe" -argument "-File `"c:\Users\champuser\SYS320-01\week7\main.ps1`""
+    $action = New-ScheduledTaskAction -Execute "powershell.exe" -argument "-File `"C:\Users\champuser\sys320\week7\main.ps1`""
        
     
     $trigger = New-ScheduledTaskTrigger -Daily -At $Time
