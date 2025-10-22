@@ -9,6 +9,7 @@
 
     Write-Host "Creating new task." | Out-String
 
+    # ensure the filepath is correct. otherwise you will be calling to an incorrect location
     $action = New-ScheduledTaskAction -Execute "powershell.exe" -argument "-File `"C:\Users\champuser\sys320\week7\main.ps1`""
        
     
