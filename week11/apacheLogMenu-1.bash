@@ -86,28 +86,35 @@ do
 	elif [[ "$userInput" == "1" ]]; then
 		echo -e "\033[1;36mDisplaying all logs:\033[0m"
 		displayAllLogs
+		echo
 
 	elif [[ "$userInput" == "2" ]]; then
 		echo -e "\033[1;33mDisplaying only IPS:\033[0m"
 		displayOnlyIPs
+		echo
 
 	# Display only pages visited
 	elif [[ "$userInput" == "3" ]]; then
 		echo -e "\033[1;32mDisplaying only pages visited\033[0m"
 		displayOnlyPages
+		echo
 
 	elif [[ "$userInput" == "4" ]]; then
 		echo -e "\033[1;35mHistogram:\033[0m"
 		histogram
+		echo
 
         # Display frequent visitors
 	elif [[ "${userInput}" == "5" ]]; then
 		echo -e "\033[1;34mFrequent Visitors\033[0m"
 		frequentVisitor
+		echo
+
 	# Display suspicious visitors
 	elif [[ "${userInput}" == "6" ]]; then
                 echo -e "\033[1;37mSuspicious Visitors\033[0m"
                 suspiciousVisitors
+		echo
 
 	# Display a message, if an invalid input is given
 	else
