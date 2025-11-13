@@ -1,0 +1,11 @@
+To: leo.blum@mymail.champlain.edu@mymail.champlain.edu
+Subject: Failed Logins
+Failed Logins:
+Nov 13 user=champuser
+Nov 13 user=champuser
+Nov 13 user=champuser
+Nov 13 user=champuser
+Nov 13 user=champuser
+Nov 13 user=champuser
+Nov 13 user=champuser
+Nov 13 user=champuser
