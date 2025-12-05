@@ -1,5 +1,5 @@
 #!/bin/bash
-bash final-C2.bash access.log IOC.txt > C2logsForC3.txt
+bash final-C2.bash access.log IOC.txt
 
 #inital formatting
 echo "<html>
@@ -17,7 +17,7 @@ echo "<html>
 		<table>" > report.html
 
 # creating the table based on the IOC filtered log file
-awk -F ' ' '{ print "\t\t\t<tr>\n\t\t\t\t<td>" $1 "</td>\n\t\t\t\t<td>" $2 "</td>\n\t\t\t\t<td>" $3 "</td>\n\t\t\t</tr>" }' C2logsForC3.txt >> report.html
+awk -F ' ' '{ print "\t\t\t<tr>\n\t\t\t\t<td>" $1 "</td>\n\t\t\t\t<td>" $2 "</td>\n\t\t\t\t<td>" $3 "</td>\n\t\t\t</tr>" }' report.txt >> report.html
 
 #html closing section 
 echo  "			</table>
